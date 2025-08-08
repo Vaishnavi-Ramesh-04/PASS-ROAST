@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Pass-Roast 2.0 🔥</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             text-align: center;
-            font-family: Arial, sans-serif;
+            font-family: Arial, 'Times New Roman', Times, serif;
             padding: 50px;
             background: linear-gradient(135deg, #ffecd2, #fcb69f);
             transition: background 0.3s ease;
@@ -39,12 +41,8 @@
             margin-top: 20px;
             color: #333;
         }
-        #roastLevel {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
         #insult {
-            font-family: 'Courier New', monospace;
+            font-family: 'Courier New', 'Times New Roman', Times, serif;
         }
     </style>
 </head>
@@ -56,18 +54,17 @@
     <input type="password" id="password" placeholder="Enter your password">
     <button onclick="insultPassword()">Roast Me</button>
 
-    <p id="roastLevel"></p>
     <p id="insult"></p>
 
     <!-- Sound effects -->
     <audio id="boo" src="https://www.myinstants.com/media/sounds/boo.mp3"></audio>
     <audio id="laugh" src="https://www.myinstants.com/media/sounds/evil-laugh.mp3"></audio>
-    <audio id="trombone" src="https://www.myinstants.com/media/sounds/sadtrombone.swf.mp3"></audio>
+    <audio id="trombone" src="https://www.myinstants.com/media/sounds/sad-trombone.mp3"></audio>
 
     <script>
         const insults = [
-            "12345? My grandma’s WiFi is stronger.",
-            "Password123? Wow… are you the CEO of Bad Ideas Inc.?",
+            " My grandma’s WiFi is stronger.",
+            " Wow… are you the CEO of Bad Ideas Inc.?",
             "Hackers are writing thank-you cards already.",
             "This password is allergic to security.",
             "Even a goldfish could guess this.",
@@ -82,32 +79,18 @@
             "That’s not a password, that’s an open invitation."
         ];
 
-        const roastLevels = [
-            "Mild Burn 🔥",
-            "Medium Roast ☕",
-            "Nuclear Insult 💣"
-        ];
-
         function insultPassword() {
             const pwd = document.getElementById("password").value.trim();
             const insultElem = document.getElementById("insult");
-            const levelElem = document.getElementById("roastLevel");
             insultElem.textContent = "";
-            levelElem.textContent = "";
 
             if (pwd.length === 0) {
                 typeText(insultElem, "Nothing? That’s not even trying.");
                 return playSound("boo");
             }
 
-            // Pick random roast level & insult
-            const level = roastLevels[Math.floor(Math.random() * roastLevels.length)];
             const insult = pickInsult(pwd);
 
-            // Show roast level
-            typeText(levelElem, level);
-
-            // Dramatic typing effect for insult
             setTimeout(() => {
                 typeText(insultElem, insult);
                 flashBackground();
