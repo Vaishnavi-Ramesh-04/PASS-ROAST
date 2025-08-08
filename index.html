@@ -2,60 +2,252 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pass-Roast 🔥</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pass-Roast</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7c3aed;
+            --primary-glow: #a78bfa;
+            --background: #0b0d1a;
+            --background-secondary: #1a1e33;
+            --text: #f1f5f9;
+            --text-secondary: #a1b2cc;
+            --shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
         body {
-            text-align: center;
-            font-family: Arial, 'Times New Roman', Times, serif;
-            padding: 50px;
-            background: linear-gradient(135deg, #ffecd2, #fcb69f);
-            transition: background 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--background), var(--background-secondary));
+            color: var(--text);
+            overflow: hidden;
+            padding: 1rem;
+            position: relative;
         }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            max-width: 640px;
+            width: 100%;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideIn 0.5s ease-out;
+        }
+
         h1 {
-            font-size: 8.5em;
-            color: #d62828;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-align: center;
         }
-        input {
-            padding: 10px;
-            width: 250px;
-            font-size: 16px;
-            border-radius: 6px;
-            border: 1px solid #aaa;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 20px;
-            margin-left: 10px;
-            background-color: #d62828;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #a71d2a;
-        }
+
         p {
-            font-size: 50px;
-            margin-top: 20px;
-            color: #333;
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            text-align: center;
+            font-weight: 400;
         }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        input {
+            padding: 0.9rem 1.2rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 15px var(--primary-glow);
+            transform: scale(1.02);
+        }
+
+        input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.5;
+        }
+
+        button {
+            padding: 0.9rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: linear-gradient(45deg, var(--primary), var(--primary-glow));
+            color: var(--text);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.4s ease;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(124, 58, 237, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
         #insult {
-            font-family: 'Times New Roman', Times, serif;
-            font-weight: bold;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-glow);
+            text-align: center;
+            min-height: 1.5em;
+            animation: revealInsult 0.6s ease-in-out;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--primary-glow);
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: floatParticle 8s infinite ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        
+
+        @keyframes revealInsult {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2.25rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+
+            input, button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            p {
+                font-size: 0.875rem;
+            }
+
+            input, button {
+                font-size: 0.95rem;
+                padding: 0.7rem;
+            }
         }
     </style>
 </head>
 <body>
-
-    <h1>Pass-Roast 🔥</h1>
-    <p>Type your password and prepare for the burn.</p>
-
-    <input type="password" id="password" placeholder="Enter your password">
-    <button onclick="insultPassword()">Roast Me</button>
-
-    <p id="insult"></p>
+    <div class="particles" id="particles"></div>
+    <div class="container">
+        <h1>Pass-Roast</h1>
+        <p>Enter your password and brace for a sharp critique.</p>
+        <div class="input-group">
+            <input type="password" id="password" placeholder="Enter your password">
+            <button onclick="insultPassword()">Roast Me</button>
+        </div>
+        <p id="insult"></p>
+    </div>
 
     <!-- Sound effects -->
     <audio id="boo" src="https://www.myinstants.com/media/sounds/boo.mp3"></audio>
@@ -102,7 +294,7 @@
         function pickInsult(pwd) {
             if (pwd.length < 5) return "Shortest disaster I’ve ever seen.";
             if (/password/i.test(pwd)) return "Oh, very clever… not.";
-            if (/1234/.test(pwd)) return "Numbers in order? Genius. 🙃";
+            if (/1234/.test(pwd)) return "Numbers in order? Genius.";
             return insults[Math.floor(Math.random() * insults.length)];
         }
 
@@ -117,9 +309,9 @@
         }
 
         function flashBackground() {
-            document.body.style.background = "#ff4d4d";
+            document.body.style.background = "linear-gradient(135deg, #7c3aed, #a78bfa)";
             setTimeout(() => {
-                document.body.style.background = "linear-gradient(135deg, #ffecd2, #fcb69f)";
+                document.body.style.background = "linear-gradient(135deg, #0b0d1a, #1a1e33)";
             }, 200);
         }
 
@@ -136,7 +328,22 @@
                 sound.play().catch(e => console.log("Audio error:", e));
             }
         }
-    </script>
 
+        // Particle effect
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDelay = `${Math.random() * 6}s`;
+                particle.style.width = `${Math.random() * 4 + 4}px`;
+                particle.style.height = particle.style.width;
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        window.onload = createParticles;
+    </script>
 </body>
 </html>
