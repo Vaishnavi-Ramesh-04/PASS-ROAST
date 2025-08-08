@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Pass-Roast 2.0 🔥</title>
-<style>
-    body {
-        text-align: center;
-        font-family: Arial, sans-serif;
-        padding: 50px;
-        background: linear-gradient(135deg, #ffecd2, #fcb69f);
-        transition: background 0.3s ease;
-    }
-    h1 {
-        font-size: 2.2em;
-        color: #d62828;
-    }
-    input {
-        padding: 10px;
-        width: 250px;
-        font-size: 16px;
-        border-radius: 6px;
-        border: 1px solid #aaa;
-    }
-    button {
-        padding: 10px 20px;
-        font-size: 16px;
-        margin-left: 10px;
-        background-color: #d62828;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: #a71d2a;
-    }
-    p {
-        font-size: 18px;
-        margin-top: 20px;
-        color: #333;
-    }
-    #roastLevel {
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-</style>
+    <title>Pass-Roast 2.0 🔥</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding: 50px;
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            transition: background 0.3s ease;
+        }
+        h1 {
+            font-size: 2.2em;
+            color: #d62828;
+        }
+        input {
+            padding: 10px;
+            width: 250px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: 1px solid #aaa;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px;
+            background-color: #d62828;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #a71d2a;
+        }
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #333;
+        }
+        #roastLevel {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        #insult {
+            font-family: 'Courier New', monospace;
+        }
+    </style>
 </head>
 <body>
 
@@ -89,8 +92,8 @@
             const pwd = document.getElementById("password").value.trim();
             const insultElem = document.getElementById("insult");
             const levelElem = document.getElementById("roastLevel");
-            insultElem.innerText = "";
-            levelElem.innerText = "";
+            insultElem.textContent = "";
+            levelElem.textContent = "";
 
             if (pwd.length === 0) {
                 typeText(insultElem, "Nothing? That’s not even trying.");
@@ -121,9 +124,9 @@
 
         function typeText(element, text) {
             let i = 0;
-            element.innerText = "";
+            element.textContent = "";
             const interval = setInterval(() => {
-                element.innerText += text.charAt(i);
+                element.textContent += text.charAt(i);
                 i++;
                 if (i >= text.length) clearInterval(interval);
             }, 50);
@@ -143,7 +146,11 @@
         }
 
         function playSound(id) {
-            document.getElementById(id).play();
+            const sound = document.getElementById(id);
+            if (sound) {
+                sound.currentTime = 0;
+                sound.play().catch(e => console.log("Audio error:", e));
+            }
         }
     </script>
 
