@@ -63,13 +63,13 @@ user enters the password and gets roasted.
 ```mermaid
 graph TD
     A[User opens app] --> B[Enters password]
-    B --> C[Clicks "Roast Me"]
+    B --> C[Clicks 'Roast Me']
     C --> D{Valid input?}
-    D -- No --> E[Show: "Nothing? That’s not even trying."]
+    D -- No --> E[Show: 'Nothing? That’s not even trying.']
     D -- Yes --> F[Analyze password]
     F --> G[Pick insult]
     G --> H[Display insult with effects]
-    H --> I[Play sound & flash background]
+    H --> I[Play sound and flash background]
 ```
 
 
