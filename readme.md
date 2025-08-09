@@ -74,14 +74,11 @@ graph TD
 
 
 ### Project Demo
-# Video
-
-
+https://github.com/user-attachments/assets/5abb136a-9eb5-408a-8deb-26133b720629
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- Vaishnavi R: front-end and back-end.
+- T R Sreelakshmi:  front-end and back-end.
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
