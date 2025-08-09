@@ -30,9 +30,6 @@ For Software:
 . Libraries used: None — it’s pure vanilla JS roast
 . Tools used: Any web browser, Notepad++, VS Code
 
-For Hardware:
-None — just a strong internet connection and the emotional capacity to be roasted
-
 ### Implementation
 For Software:
 # Installation
@@ -53,24 +50,32 @@ Responsive layout works on mobile and desktop.
 
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+<img width="943" height="945" alt="image" src="https://github.com/user-attachments/assets/d93f9419-0cd1-416c-88c1-2de3cdd5fbaa" />
+landing page
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+<img width="948" height="919" alt="image" src="https://github.com/user-attachments/assets/db9b0f90-1db6-48f6-84c4-9fdb3aaf0cbd" />
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+user enters the password and gets roasted.
+
 
 # Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
+
+```mermaid
+graph TD
+    A[User opens app] --> B[Enters password]
+    B --> C[Clicks "Roast Me"]
+    C --> D{Valid input?}
+    D -- No --> E[Show: "Nothing? That’s not even trying."]
+    D -- Yes --> F[Analyze password]
+    F --> G[Pick insult]
+    G --> H[Display insult with effects]
+    H --> I[Play sound & flash background]
+```
 
 
 ### Project Demo
 # Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
+
 
 
 ## Team Contributions
